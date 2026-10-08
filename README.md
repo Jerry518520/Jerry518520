@@ -21,7 +21,7 @@
 
 基于 ESA OPS-SAT 公开数据集（30.3 万行采样点 / 2123 段 / 9 通道）。用 Isolation Forest 检出异常段，再用 RAG 结合卫星手册知识库让 LLM 给出可溯源的异常解释。上海电机学院大学生创新创业训练计划项目，任项目负责人。
 
-<p align="center"><img alt="实时告警中心" src="https://raw.githubusercontent.com/Jerry518520/microsat-anomaly-analysis/main/docs/assets/dashboard.png" width="70%"></p>
+<p align="center"><img alt="实时告警中心" src="https://raw.githubusercontent.com/Jerry518520/microsat-anomaly-analysis/main/docs/assets/dashboard.png" width="31%"> <img alt="算法实验" src="https://raw.githubusercontent.com/Jerry518520/microsat-anomaly-analysis/main/docs/assets/detection.png" width="31%"> <img alt="深度诊断" src="https://raw.githubusercontent.com/Jerry518520/microsat-anomaly-analysis/main/docs/assets/rag_explain.png" width="31%"></p>
 
 | 指标 | 结果 |
 |---|---|
@@ -40,6 +40,8 @@
 ## 项目 2 · AI 财报分析助手
 
 让非金融专业人士读懂上市公司 PDF 财报：上传财报后用自然语言提问，由 LangGraph Agent 调用财务工具算指标、生成摘要与能力雷达图，并标注来源页码。
+
+<p align="center"><img alt="贵州茅台 2025 年报分析结果" src="https://raw.githubusercontent.com/Jerry518520/financial-analysis-AI-assistant/main/docs/assets/main.png" width="92%"></p>
 
 | 指标 | 结果 |
 |---|---|
