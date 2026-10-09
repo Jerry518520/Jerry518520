@@ -1,4 +1,6 @@
-# 李冰杰 Bingjie Li
+# 李冰杰 Jerry Li
+
+<p align="right"><a href="README.en.md">English</a> | <b>中文</b></p>
 
 <p align="center"><img alt="Location" src="https://img.shields.io/badge/%F0%9F%93%8D-Shanghai%2C%20China-4B6BFB"> <img alt="School" src="https://img.shields.io/badge/%E4%B8%8A%E6%B5%B7%E7%94%B5%E6%9C%BA%E5%AD%A6%E9%99%A2-%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%EF%BC%88%E5%8D%93%E8%B6%8A%E7%8F%AD%EF%BC%89%202027%E5%B1%8A-1D9E75"> <img alt="Focus" src="https://img.shields.io/badge/Focus-LLM%20%E5%BA%94%E7%94%A8%E5%B7%A5%E7%A8%8B%E5%8C%96-orange"> <img alt="Looking for" src="https://img.shields.io/badge/%E5%AF%BB%E6%B1%82-2027%20%E5%B1%8A%E5%AE%9E%E4%B9%A0-E24B4A"> <img alt="Email" src="https://img.shields.io/badge/Email-jerrylbj%40foxmail.com-lightgrey"></p>
 
