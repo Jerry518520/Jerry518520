@@ -1,4 +1,4 @@
-# 李冰杰 Jerry Li
+# 李冰杰
 
 <p align="right"><a href="README.en.md">English</a> | <b>中文</b></p>
 
