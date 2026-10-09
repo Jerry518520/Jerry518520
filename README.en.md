@@ -1,4 +1,4 @@
-# Bingjie Li (Jerry Li)
+# Bingjie Li
 
 <p align="right"><b>English</b> | <a href="README.md">中文</a></p>
 
