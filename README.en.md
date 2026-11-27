@@ -27,8 +27,8 @@ Built on the public **ESA OPS-SAT-AD** real on-orbit telemetry dataset (303,493 
 | Dimension | Measured Result |
 |---|---|
 | Strict Segment-level CV F1 | **0.35 → 0.57** (without Point-Adjustment inflation; frozen benchmark **0.6204**) |
-| Local Hybrid Retrieval (BM25 + FAISS) | 24-query ablation dropped 494ms Rerank & rank-hurting RRF; **MRR → 0.885**, ~**20ms** per query |
-| 300k-Point Stream Replay | FastAPI + WebSocket alert push **P95 494ms**; **SQLite WAL lease lock** prevents duplicate LLM calls |
+| Local Hybrid Retrieval (BM25 + FAISS) | 24-query ablation dropped rank-hurting RRF & ~0.5s Cross-Encoder reranking (MRR dropped to 0.807); **MRR → 0.885**, ~**20ms** per query |
+| 300k-Point Stream Replay | FastAPI + WebSocket ~114s full replay; synthetic anomaly alert push **P95 494ms**; **SQLite transactional lease lock (WAL)** prevents duplicate LLM calls |
 | Hallucination & Fact Audit | Audited source papers & quarantined **200 legacy cached records**; **10/10** insufficient-evidence refusal across 30-query eval (LLM-as-a-Judge factuality **1.90/2.0**) |
 | Verification & Delivery | **445 pytest** backend tests + **35** browser E2E checks + **SHA-256** delivery integrity manifest |
 
