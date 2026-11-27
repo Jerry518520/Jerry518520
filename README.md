@@ -20,19 +20,19 @@
 
 ## 开源代表项目 · 微小卫星遥测异常检测与 RAG 解释系统
 
-面向缺标注、高可靠的航天遥测场景（基于公开 **ESA OPS-SAT-AD** 真实在轨数据集：30.3 万采样点 / 2,123 段 / 9 通道）。采用“确定性分通道检测 + 本地混合 RAG + 按需调用 DeepSeek API 解释”架构，兼顾低延迟与可溯源。上海电机学院 3 人大创项目（中科院小卫星所交流项目），任核心负责人。
+面向缺标注、高可靠的航天遥测场景（基于公开 **ESA OPS-SAT-AD** 真实在轨数据集：30.3 万采样点 / 2,123 段 / 9 通道）。采用“确定性分通道检测 + 本地混合 RAG + 按需调用 DeepSeek API 解释”架构，兼顾低延迟与可溯源。上海电机学院 3 人大创项目（3 人市级大创项目），任核心负责人。
 
 <p align="center"><img alt="实时告警中心" src="https://raw.githubusercontent.com/Jerry518520/microsat-anomaly-analysis/main/docs/assets/dashboard.png" width="31%"> <img alt="算法实验" src="https://raw.githubusercontent.com/Jerry518520/microsat-anomaly-analysis/main/docs/assets/detection.png" width="31%"> <img alt="深度诊断" src="https://raw.githubusercontent.com/Jerry518520/microsat-anomaly-analysis/main/docs/assets/rag_explain.png" width="31%"></p>
 
 | 维度 | 实测结果 |
 |---|---|
 | 严格段级交叉验证 F1 | **0.35 → 0.57**（不做 Point-Adjustment 刷分；工程冻结包复核 **0.6204**） |
-| 本地混合检索（BM25 + FAISS） | 24 题实验弃用 494ms Rerank 与拉低效果的 RRF，**MRR 提至 0.885**，单次检索约 **20ms** |
-| 30 万点遥测流回放 | FastAPI + WebSocket 纯检测告警推送 **P95 494ms**；**SQLite WAL 防重锁**防并发重复调 LLM |
+| 本地混合检索（BM25 + FAISS） | 24 题实验舍弃降排序的 RRF 与约 0.5s 重排（提召回但致 MRR 跌至 0.807），**MRR 提至 0.885**，单次检索约 **20ms** |
+| 30 万点遥测流回放 | FastAPI + WebSocket 约 114s 全量跳空档回放，合成异常段告警推送 **P95 494ms**；**SQLite 事务租约锁（WAL 模式）**防并发重触发 LLM |
 | 防幻觉与事实核查 | 核验原论文并隔离 **200 条存疑历史缓存**；30 题真实问答实现 **10/10 资料不足题准确拒答**（LLM-as-a-Judge 复核，事实一致性 **1.90/2.0**） |
 | 自动化测试与交付 | **445 项 pytest** 后端回归 + **35 项**浏览器端验收 + 交付文件 **SHA-256 完整性校验清单** |
 
-- **靠实验做减法**：航天手册含大量专有传感器编号且需压低延迟，24 题对比实测发现常用 RRF 拉低排序、Cross-Encoder Rerank 耗时 494ms 无净收益，果断砍掉并改用文档扩充与轻量加权，兼顾精度与 20ms 级延迟。
+- **靠实验做减法**：航天手册含大量专有传感器编号且需压低延迟，24 题对比实测发现常用 RRF 拉低排序、Cross-Encoder Rerank 虽将 usable@5 提至 1.000 但致 MRR 跌至 0.807 且 GPU 单次耗时约 0.5s，权衡后舍弃并改用文档扩充与轻量加权，兼顾精度与 20ms 级延迟。
 - **定位非显性失效**：排查出配置空字符串吞掉防幻觉提示词、以及早期缓存编造磁力计轴向/单位等静默缺陷，补齐边界知识文档、通用/诊断双模板与原文页码直达溯源。
 - **指标口径治理**：严守整段评估与残缺段拒判，拒绝点调整刷分，段级与点级异常占比分母严格隔离。
 
