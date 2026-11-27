@@ -2,65 +2,51 @@
 
 <p align="right"><a href="README.en.md">English</a> | <b>中文</b></p>
 
-<p align="center"><img alt="Location" src="https://img.shields.io/badge/%F0%9F%93%8D-Shanghai%2C%20China-4B6BFB"> <img alt="School" src="https://img.shields.io/badge/%E4%B8%8A%E6%B5%B7%E7%94%B5%E6%9C%BA%E5%AD%A6%E9%99%A2-%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%EF%BC%88%E5%8D%93%E8%B6%8A%E7%8F%AD%EF%BC%89%202027%E5%B1%8A-1D9E75"> <img alt="Focus" src="https://img.shields.io/badge/Focus-LLM%20%E5%BA%94%E7%94%A8%E5%B7%A5%E7%A8%8B%E5%8C%96-orange"> <img alt="Looking for" src="https://img.shields.io/badge/%E5%AF%BB%E6%B1%82-2027%20%E5%B1%8A%E5%AE%9E%E4%B9%A0-E24B4A"> <img alt="Email" src="https://img.shields.io/badge/Email-jerrylbj%40foxmail.com-lightgrey"></p>
+<p align="center"><img alt="Location" src="https://img.shields.io/badge/%F0%9F%93%8D-Shanghai%2C%20China-4B6BFB"> <img alt="School" src="https://img.shields.io/badge/%E4%B8%8A%E6%B5%B7%E7%94%B5%E6%9C%BA%E5%AD%A6%E9%99%A2-%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%EF%BC%88%E5%8D%93%E8%B6%8A%E7%8F%AD%EF%BC%89%202027%E5%B1%8A-1D9E75"> <img alt="Focus" src="https://img.shields.io/badge/Focus-LLM%20%E5%BA%94%E7%94%A8%E4%B8%8E%20Agent%20%E5%B7%A5%E7%A8%8B-orange"> <img alt="Looking for" src="https://img.shields.io/badge/%E5%AF%BB%E6%B1%82-2027%20%E5%B1%8A%E5%AE%9E%E4%B9%A0-E24B4A"> <img alt="Email" src="https://img.shields.io/badge/Email-jerrylbj%40foxmail.com-lightgrey"></p>
 
-做 LLM 应用开发，专注 RAG 与 Agent 的端到端落地。做过完整链路：文档解析 → 切片 → Embedding → 检索 → Prompt → 生成 → 引用溯源 → API → 前端。
+专注 **LLM 应用与 Agent 工程落地**（RAG 混合检索、多步工具编排、Eval 评测与防幻觉治理），覆盖从文档解析、双路检索、确定性工具链路到 FastAPI 后端与容器化交付的完整闭环。
 
-比起把模型调通，我更擅长定位 LLM 的非显性失效——那些不报错、但输出已经脱离依据的问题，并为它们设计防复发的兜底与回归测试。
+比起把模型调通，我更在意定位 LLM 的**非显性失效**——那些系统不报错、但输出已经脱离依据或口径错位的问题，并用确定性校验、拒答边界与自动化回归测试把它们彻底兜住。
 
 ## 技术栈
 
 | 方向 | 技术 |
 |---|---|
-| LLM 应用 | LangGraph · LangChain · ReAct · Function Calling · Prompt 工程 |
-| 检索 RAG | BGE-M3 · FAISS · BM25 · 混合检索 · 引用溯源 |
-| 后端 | Python 异步 · FastAPI · Uvicorn · REST · WebSocket |
-| 前端 | React 19 + TypeScript · Vite · Tailwind CSS · ECharts |
-| 工程化 | Docker Compose · pytest · pre-commit · Poetry / pip |
-| 算法 | Isolation Forest · 特征工程 · 规则引擎门控融合 · 评测指标设计 |
+| LLM 与编排 | LangGraph · LangChain · Dify 工作流 · ReAct · Function Calling · Prompt 调优 |
+| 检索与解析 | RAG · MinerU · PyMuPDF · Embedding（BGE-M3）· BM25 · pgvector · FAISS · Reranker · Eval |
+| 后端与存储 | Python · FastAPI（REST / WebSocket）· PostgreSQL · Redis · SQLite WAL |
+| 工程与部署 | Docker Compose · Nginx · pytest · Git · Linux · Trace 观测 |
+| 前端与可视化 | React 19 + TypeScript · Vite · Tailwind CSS · ECharts |
 
-## 项目 1 · 微小卫星遥测异常检测与 RAG 解释系统
+## 开源代表项目 · 微小卫星遥测异常检测与 RAG 解释系统
 
-基于 ESA OPS-SAT 公开数据集（30.3 万行采样点 / 2123 段 / 9 通道）。用 Isolation Forest 检出异常段，再用 RAG 结合卫星手册知识库让 LLM 给出可溯源的异常解释。上海电机学院大学生创新创业训练计划项目，任项目负责人。
+面向缺标注、高可靠的航天遥测场景（基于公开 **ESA OPS-SAT-AD** 真实在轨数据集：30.3 万采样点 / 2,123 段 / 9 通道）。采用“确定性分通道检测 + 本地混合 RAG + 按需调用 DeepSeek API 解释”架构，兼顾低延迟与可溯源。上海电机学院 3 人大创项目（中科院小卫星所交流项目），任核心负责人。
 
 <p align="center"><img alt="实时告警中心" src="https://raw.githubusercontent.com/Jerry518520/microsat-anomaly-analysis/main/docs/assets/dashboard.png" width="31%"> <img alt="算法实验" src="https://raw.githubusercontent.com/Jerry518520/microsat-anomaly-analysis/main/docs/assets/detection.png" width="31%"> <img alt="深度诊断" src="https://raw.githubusercontent.com/Jerry518520/microsat-anomaly-analysis/main/docs/assets/rag_explain.png" width="31%"></p>
 
-| 指标 | 结果 |
+| 维度 | 实测结果 |
 |---|---|
-| 段级 F1 | 0.5882 → **0.6281**（+6.8%） |
-| 告警误报 | **20 → 0** |
-| RAG 引用溯源 | **200 / 200** |
-| 检索中位耗时 | **25 ms** |
+| 严格段级交叉验证 F1 | **0.35 → 0.57**（不做 Point-Adjustment 刷分；工程冻结包复核 **0.6204**） |
+| 本地混合检索（BM25 + FAISS） | 24 题实验弃用 494ms Rerank 与拉低效果的 RRF，**MRR 提至 0.885**，单次检索约 **20ms** |
+| 30 万点遥测流回放 | FastAPI + WebSocket 纯检测告警推送 **P95 494ms**；**SQLite WAL 防重锁**防并发重复调 LLM |
+| 防幻觉与事实核查 | 核验原论文并隔离 **200 条存疑历史缓存**；30 题真实问答实现 **10/10 资料不足题准确拒答**（LLM-as-a-Judge 复核，事实一致性 **1.90/2.0**） |
+| 自动化测试与交付 | **445 项 pytest** 后端回归 + **35 项**浏览器端验收 + 交付文件 **SHA-256 完整性校验清单** |
 
-- **工程取舍**：为把检索中位耗时压到 25 ms，主动放弃在线增量写入、改为离线重建索引；代价是知识库更新需重建，收益是检索路径极简、延迟可控。
-- **修复非显性 AI 缺陷**：「防幻觉提示词已写入但未生效」——生成内容脱离检索依据而系统无任何报错；用断言校验定位根因后，补上「检索不到即拒答」兜底与回归测试。
-- **指标口径治理**：段级与点级异常率分母不同、不可混用，两套口径单独出文档约束，避免跨口径比大小。
-- **交付形态**：FastAPI + React 19 前后端分离，含实时数据接入（`/api/stream/ingest` + WebSocket 告警）、API 认证与限流、SQLite 告警持久化。
+- **靠实验做减法**：航天手册含大量专有传感器编号且需压低延迟，24 题对比实测发现常用 RRF 拉低排序、Cross-Encoder Rerank 耗时 494ms 无净收益，果断砍掉并改用文档扩充与轻量加权，兼顾精度与 20ms 级延迟。
+- **定位非显性失效**：排查出配置空字符串吞掉防幻觉提示词、以及早期缓存编造磁力计轴向/单位等静默缺陷，补齐边界知识文档、通用/诊断双模板与原文页码直达溯源。
+- **指标口径治理**：严守整段评估与残缺段拒判，拒绝点调整刷分，段级与点级异常占比分母严格隔离。
 
 **仓库**：https://github.com/Jerry518520/microsat-anomaly-analysis
 
-## 项目 2 · AI 财报分析助手
+*(注：企业实习期间参与的内部投研财报系统与运动健康工作流项目因涉及企业合规与保密规范，均不公开源码。)*
 
-让非金融专业人士读懂上市公司 PDF 财报：上传财报后用自然语言提问，由 LangGraph Agent 调用财务工具算指标、生成摘要与能力雷达图，并标注来源页码。
+## 我怎么看待 LLM 工程
 
-<p align="center"><img alt="贵州茅台 2025 年报分析结果" src="https://raw.githubusercontent.com/Jerry518520/financial-analysis-AI-assistant/main/docs/assets/main.png" width="92%"></p>
+- **先定边界，再谈智能**：凡是能用确定性规则和代码算准的（如财务勾稽、差值计算、前置校验），绝不交给大模型概率发挥；模型只做它擅长的理解与表达。
+- **非显性失效必须靠回归兜底**：LLM 的很多事故不会抛异常——提示词未生效、口径串行、答对结论但指错出处，都要靠断言校验、评测集和回归测试锁死。
+- **宁可拒答，绝不编造**：高可靠业务场景里，资料不足时准确拒答并给出可核验的原文出处，远比生成一段看似流利的猜测更有工程价值。
 
-| 指标 | 结果 |
-|---|---|
-| Agent 工作流 | LangGraph 闭环：规划 → 工具调用 → 反思 → 重试，最多 **5 轮**迭代收敛 |
-| 工具层 | 封装 **19 个**财务计算工具 |
-| 文档解析 | LlamaParse 混合解析，攻克中文财报 PDF **无边框表格** |
-| 部署 | Docker Compose 一键启动，GPU / CPU 依赖分离 + 健康检查 |
-
-**仓库**：https://github.com/Jerry518520/financial-analysis-AI-assistant
-
-## 💡 我怎么看待 LLM 工程
-
-- **失效模式**：LLM 的问题大多不报错。防幻觉提示词写了不等于生效——输出脱离检索依据时系统毫无反应。这类非显性失效要靠断言校验和回归测试兜住，不能靠肉眼 review。
-- **可验证**：指标口径必须先定清楚再谈优化。分母不同的两个指标不能直接比大小，否则优化方向会被自己的数字带偏。
-- **工程纪律**：宁可让系统拒答，也不要让它编。检索不到依据就返回「没有依据」，比给一个看起来合理的答案是更好的工程选择。
-
-## 📫 联系
+## 联系我
 
 - **邮箱**：jerrylbj@foxmail.com
-- **求职意向**：LLM 应用开发 / AI 应用开发方向实习
+- **意向方向**：AI Agent 开发 / FDE、AI 产品经理、AI 解决方案工程师（2027 届实习）
